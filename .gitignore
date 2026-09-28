@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Packet Tracer / GNS3 temporary locks and autosaves
+*.tmp
+*.bak
+*~
+*.lock
