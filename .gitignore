@@ -11,4 +11,7 @@ Thumbs.db
 *.bak
 *~
 *.lock
+
+# Sensitive files
 CiscoCredentials.txt
+my_folder/
