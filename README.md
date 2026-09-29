@@ -130,7 +130,10 @@ show port-security address
 │   └── access/
 │       ├── SW-ACC-01.cfg
 │       └── SW-ACC-02.cfg
-└── docs/
-    ├── ip-schema.md
-    └── verification-commands.md
+├── docs/
+│   ├── ip-schema.md
+│   └── verification-commands.md
+└── scripts/
+    └── Core-Switch-Configs.txt
+
 ```
