@@ -1,0 +1,55 @@
+enable
+configure terminal
+
+! 1. Hostname & Domain
+hostname {INPUT_SWITCH_NAME}
+ip domain-name enterprise.local
+
+! 2. Prevent typo DNS lookup hangs
+no ip domain-lookup
+
+! 3. Passwords & Local Admin Account
+enable secret {INPUT_SWITCH_PASSWORD}
+service password-encryption
+username netadmin privilege 15 secret AdminPass123!
+
+! 4. SSHv2 Generation
+
+******PLEASE REVIEW*******
+
+// COMMENTS
+// modulus does not work when inputed 
+// forces you to run "crypto key generate rsa" 
+// then type 2048 after
+
+crypto key generate rsa modulus 2048
+******PLEASE REVIEW*******
+
+
+ip ssh version 2
+
+! 5. Console & VTY Line Hardening
+line con 0
+ password Cisco123!
+ login local
+ exec-timeout 15 0
+ logging synchronous
+ exit
+
+line vty 0 15
+ transport input ssh
+ login local
+ exec-timeout 15 0
+ logging synchronous
+ exit
+
+! 6. Warning Banner
+banner motd ^C
+****************************************************************
+* ATTENTION: AUTHORIZED ACCESS ONLY TO ENTERPRISE CORE FABRIC. *
+* ALL ACTIVITY IS MONITORED AND LOGGED.                        *
+****************************************************************
+^C
+
+exit
+write memory
